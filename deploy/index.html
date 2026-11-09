@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SparkleWares Studio — five centimetres of vinyl</title>
+<meta name="description" content="Handmade 2-inch (5 cm) mini vinyl records with a matching sleeve, printed label and gift box. Made one at a time, numbered by hand.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SparkleWares Studio — five centimetres of vinyl">
+<meta property="og:description" content="Every album redrawn for a 2-inch sleeve — cut, pressed and glued by hand. A miniature of the record that raised you.">
+<meta property="og:image" content="https://sparklewares.pages.dev/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2317120C'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23100D0B'/%3E%3Ccircle cx='50' cy='50' r='11' fill='%23F6EEDC'/%3E%3Ccircle cx='50' cy='50' r='2.4' fill='%231A1512'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --violet:#7B4BE0; --bg:#17120C; --ink:#F6EEDC; --acc:#E8A94C; --acc2:#C07E22;
+    --serif:"Bodoni MT",Georgia,"Times New Roman",serif;
+    --hand:"Ink Free","Segoe Script","Bradley Hand",cursive;
+    --sans:"Segoe UI",system-ui,sans-serif;
+    --mar:clamp(18px,3.4vw,52px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);overflow-x:hidden;font-family:var(--serif)}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--acc);color:var(--bg)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .hand{font-family:var(--hand)}
+  .sans{font-family:var(--sans)}
+
+  .room{position:fixed;inset:0;z-index:0;background:
+    radial-gradient(58% 44% at 74% 26%, rgba(232,169,76,.26), rgba(232,169,76,.07) 46%, transparent 72%),
+    radial-gradient(130% 100% at 50% 6%, #241B12 0%, #17120C 58%, #0E0A06 100%)}
+  .grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  header{position:fixed;inset:0 0 auto;z-index:80;display:flex;justify-content:space-between;
+    align-items:center;padding:14px var(--mar)}
+  .logo{width:clamp(112px,10vw,154px);filter:brightness(0) invert(1) opacity(.92)}
+  .menu{display:grid;gap:5px;padding:9px 11px;border:2px solid rgba(246,238,220,.55);border-radius:11px}
+  .menu i{display:block;width:20px;height:4px;border-radius:2px;background:var(--ink)}
+
+  .stage{position:relative;z-index:2;width:min(100%,1440px);margin:0 auto}
+  section{position:relative}
+
+  .o{position:absolute;filter:drop-shadow(0 34px 42px rgba(0,0,0,.62));
+    transform:translate3d(0,var(--ty,0px),0);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .4s}
+  .o:hover{transform:translate3d(0,calc(var(--ty,0px) - 10px),0) scale(1.025);
+    filter:drop-shadow(0 46px 56px rgba(0,0,0,.72))}
+  .o img{display:block;width:100%}
+
+  /* ---------- act 1 ---------- */
+  .a1{height:104svh}
+  .a1 .case{right:-4%;top:50%;translate:0 -50%;width:56%;z-index:5}
+  .a1 .casebox{left:33%;bottom:7%;width:19%;z-index:6}
+  .a1 .props{left:-1%;bottom:-2.5%;width:34%;z-index:7}
+  .a1 .t3d{position:absolute;left:3.2%;top:11vh;width:min(54%,700px);z-index:8;
+    filter:drop-shadow(0 26px 34px rgba(0,0,0,.55))}
+  .a1 .t3d img{width:100%;display:block}
+  .a1 .disc{position:absolute;left:39%;top:7%;width:clamp(84px,9%,124px);z-index:8;
+    filter:drop-shadow(0 18px 22px rgba(0,0,0,.55))}
+  .a1 .body{position:absolute;left:3.4%;top:60vh;max-width:30ch;font-size:17px;line-height:1.62;
+    color:rgba(246,238,220,.74);z-index:8;margin:0}
+  .a1 .pill{position:absolute;left:3.4%;top:74vh;font-size:13px;color:var(--bg);background:var(--ink);
+    border-radius:999px;padding:8px 14px;z-index:8;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+  .a1 .hw{position:absolute;left:3.4%;top:79.5vh;font-size:15px;color:var(--acc);z-index:8}
+
+
+  /* kicker under the 3D title */
+  .a1 .kicker{position:absolute;left:3.4%;top:56.5vh;margin:0;z-index:8;
+    font-family:var(--sans);font-size:clamp(10px,.78vw,12px);letter-spacing:.24em;
+    text-transform:uppercase;color:rgba(246,238,220,.52);display:flex;align-items:center;gap:12px}
+  .a1 .kicker::before{content:"";width:20px;height:1.5px;background:var(--violet);flex:0 0 auto}
+
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .a1 .case{position:absolute}
+
+  .a1 .case{position:absolute}
+  .a1 .vinyl{position:absolute;left:43.54%;top:66.05%;width:45.3%;aspect-ratio:1;
+    translate:-50% -50%;transform:rotate(0deg) scaleY(.604);transform-origin:50% 50%;
+    border-radius:50%;overflow:hidden;
+    box-shadow:inset 0 0 0 2px rgba(18,12,7,.4),inset 0 8px 18px rgba(0,0,0,.35)}
+  .a1 .vinyl .spin{display:block;width:100%;height:100%;animation:spin 9s linear infinite}
+  .a1 .vinyl img{width:100%;height:100%;object-fit:cover;display:block}
+  /* ---------- act 2 ---------- */
+  .a2{height:96svh}
+  .a2 h2{position:absolute;left:3.6%;top:11vh;margin:0;font-size:clamp(30px,3.6vw,52px);
+    line-height:1.04;max-width:10ch;z-index:8;font-weight:400}
+  .a2 .sleeve{left:34%;bottom:8%;width:min(26%,330px);z-index:4;transform:rotate(-6deg)}
+  .a2 .box{right:5%;bottom:20%;width:min(23%,300px);z-index:4;transform:rotate(3deg)}
+  .a2 .notes{position:absolute;left:3.6%;top:38vh;z-index:9;display:grid;gap:14px;width:min(29%,330px)}
+  .a2 .notes p{margin:0;font-size:16px;line-height:1.6;color:rgba(246,238,220,.72)}
+  .a2 .cap{font-family:var(--hand);font-size:14px;color:var(--acc)}
+  .a2 .cap--r{position:absolute;right:6%;top:22vh;transform:rotate(-3deg);z-index:8}
+
+
+  .a2 .notes{display:grid;gap:16px}
+  .a2 .note{margin:0;display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;
+    font-size:15.5px;line-height:1.5;color:rgba(246,238,220,.72)}
+  .a2 .note b{font-weight:400;color:var(--ink)}
+  .a2 .note .num{font-family:var(--hand);font-size:13px;color:var(--violet);padding-top:2px}
+  .a2 .note + .note{border-top:1px solid rgba(246,238,220,.12);padding-top:14px}
+
+  /* act 2 hero: oversized disc bleeding off the right edge */
+  .a2 .macro{position:absolute;right:calc(-8vw - max(0px,(100vw - 1440px)/2));top:5vh;width:min(52vw,860px);z-index:4;
+    filter:drop-shadow(0 60px 80px rgba(0,0,0,.75))}
+  .a2 .macro .macro-img{width:100%;display:block;will-change:transform}
+  .a2 .macro .macro-label{position:absolute;left:49.5%;top:49.05%;width:51%;aspect-ratio:1;
+    translate:-50% -50%;border-radius:50%;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+  .a2 .macro .macro-label img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ---------- act 2b : material band, bleeding left ---------- */
+  .a25{position:relative;height:82svh;min-height:460px}
+  .a25 .corner{position:absolute;left:calc(-7vw - max(0px,(100vw - 1440px)/2));top:4vh;width:min(46vw,760px);
+    filter:drop-shadow(0 60px 80px rgba(0,0,0,.72))}
+  .a25 .corner img{width:100%;display:block}
+  .a25 .line{position:absolute;right:4%;top:40vh;margin:0;max-width:24ch;
+    font-size:clamp(15px,1.15vw,18px);line-height:1.6;color:rgba(246,238,220,.72)}
+  .a25 .line::before{content:"";display:block;width:22px;height:1.5px;background:var(--violet);margin-bottom:14px}
+  /* ---------- act 3 : upload ---------- */
+  .a3{min-height:0;padding:11vh var(--mar) 7vh;display:grid;place-items:center}
+  .a3 .head{text-align:center;margin-bottom:clamp(24px,4vh,44px)}
+  .a3 h2{margin:0 0 12px;font-size:clamp(30px,4vw,56px);line-height:1.02;font-weight:400}
+  .a3 .sub{margin:0;font-size:16px;line-height:1.6;color:rgba(246,238,220,.66);max-width:46ch}
+  .panel{width:min(100%,1060px);background:#F6EEDC;color:#20180F;border-radius:26px;
+    padding:clamp(16px,2vw,26px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(18px,2.6vw,34px);align-items:center;
+    box-shadow:0 46px 90px rgba(0,0,0,.6)}
+  .panel h3{margin:0 0 6px;font-family:var(--sans);font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(32,24,15,.5)}
+  .up{position:relative;display:grid;gap:4px;text-align:center;border:2px dashed rgba(32,24,15,.3);
+    border-radius:12px;padding:14px 12px;cursor:pointer;background:#FFFBF1;margin-bottom:10px}
+  .up:hover,.up.over{border-color:var(--acc2);background:rgba(232,169,76,.16)}
+  .up strong{font-family:var(--sans);font-size:12.5px;font-weight:600}
+  .up small{font-family:var(--sans);font-size:10.5px;color:rgba(32,24,15,.5)}
+  .up input{position:absolute;inset:0;opacity:0;cursor:pointer}
+  .f{display:grid;grid-template-columns:46px 1fr;align-items:center;gap:8px;margin-top:8px}
+  .f label{font-family:var(--sans);font-size:11.5px;color:rgba(32,24,15,.6)}
+  .f input{width:100%;font-family:var(--serif);font-size:14px;background:#fff;color:inherit;
+    border:1px solid rgba(32,24,15,.2);border-radius:8px;padding:8px 10px}
+  .acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .btn{border:0;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:12.5px;
+    padding:10px 16px;border-radius:999px;background:#20180F;color:#F6EEDC;text-decoration:none}
+  .btn--ghost{background:transparent;color:#20180F;box-shadow:inset 0 0 0 1.5px rgba(32,24,15,.25)}
+  .micro{margin:8px 0 0;font-family:var(--sans);font-size:10.5px;color:rgba(32,24,15,.45)}
+
+  /* ---------- the 3D model: a real sleeve with depth + a tilted record ---------- */
+  .view{position:relative;perspective:1100px;aspect-ratio:1/1;display:grid;place-items:center;perspective-origin:46% 42%}
+  .sleeve3d{position:relative;width:64%;aspect-ratio:1/1;transform-style:preserve-3d;
+    transform:rotateY(-26deg) rotateX(7deg) rotateZ(-2deg)}
+  .sleeve3d .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:2px}
+  .sleeve3d .front{transform:translateZ(11px);overflow:hidden;background:#E9DCC2;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
+  .sleeve3d .front img{width:100%;height:100%;object-fit:cover;display:block}
+  .sleeve3d .back{transform:rotateY(180deg) translateZ(11px);background:#EDE1C9;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+  .sleeve3d .back::after{content:"";position:absolute;inset:14%;border-radius:1px;
+    background:repeating-linear-gradient(180deg,rgba(120,100,70,.10) 0 2px,transparent 2px 9px)}
+  .sleeve3d .spine{left:-11px;width:22px;background:linear-gradient(90deg,#D8C9AB,#EDE1C9);
+    transform:rotateY(-90deg);transform-origin:right center}
+  .sleeve3d .top{top:-11px;height:22px;background:linear-gradient(180deg,#F3E8D2,#DCCFB4);
+    transform:rotateX(90deg);transform-origin:bottom center}
+  .sleeve3d .floor{position:absolute;left:6%;right:6%;bottom:-14%;height:14%;transform-style:flat;
+    background:radial-gradient(ellipse at 50% 0%,rgba(60,35,10,.35),transparent 72%);filter:blur(2px)}
+
+  .pv-title{position:absolute;left:7%;right:7%;top:7%;font-family:var(--serif);font-style:italic;
+    font-size:clamp(12px,1.25vw,18px);line-height:1.02;color:#fff;mix-blend-mode:difference}
+  .pv-artist{position:absolute;left:7%;bottom:6%;font-family:var(--sans);font-size:9px;letter-spacing:.14em;
+    text-transform:uppercase;color:#fff;mix-blend-mode:difference}
+
+  .disc3d{position:absolute;right:-1%;bottom:-3%;width:54%;
+    transform:rotateY(20deg) rotateX(-9deg) rotateZ(5deg) translateZ(46px);
+    filter:drop-shadow(16px 28px 34px rgba(50,28,8,.45))}
+  .disc3d svg{display:block;width:100%;height:auto}
+  .tag{position:absolute;left:2%;top:2%;font-family:var(--hand);font-size:13px;color:var(--acc2);z-index:4}
+
+  /* footer */
+  footer{position:relative;z-index:2;width:min(100%,1440px);margin:0 auto;
+    padding:34px var(--mar) calc(34px + 118px);display:flex;flex-wrap:wrap;gap:16px 44px;
+    justify-content:space-between;align-items:flex-end;color:rgba(246,238,220,.5);font-family:var(--sans);font-size:11.5px}
+  footer .mark{width:clamp(104px,10vw,142px);filter:brightness(0) invert(1) opacity(.85)}
+  footer .mark img{width:100%;display:block}
+
+  /* persistent dock */
+  .dock{position:fixed;inset:auto 0 16px;z-index:85;display:flex;justify-content:center;pointer-events:none}
+  .dock .bar{pointer-events:auto;width:min(calc(100% - var(--mar)*2),1336px);display:flex;align-items:center;
+    gap:12px;min-height:50px;padding:8px 14px 8px 20px;border-radius:15px;
+    background:rgba(24,18,12,.84);border:1px solid rgba(246,238,220,.16);backdrop-filter:blur(8px)}
+  .dock p{margin:0;font-family:var(--sans);font-size:11.5px;color:rgba(246,238,220,.66)}
+  .dock .sp{margin-left:auto}
+  .dock .btn{padding:8px 15px;font-size:12px}
+
+  @media (max-width:900px){
+    .a1,.a2{height:auto;padding:0 var(--mar) 40px}
+    .a1{padding-top:86px;padding-bottom:96px !important}
+    .a1 .t3d,.a1 .case,.a1 .casebox,.a1 .props,.a1 .disc,.a1 .body,.a1 .pill,.a1 .hw,
+    .a2 h2,.a2 .sleeve,.a2 .box,.a2 .notes,.a2 .cap--r{position:relative !important;left:auto !important;
+      right:auto !important;top:auto !important;bottom:auto !important;translate:none !important;
+      width:100% !important;max-width:min(100%,340px);margin:0 auto 14px}
+    .a1 .t3d{order:-2;max-width:min(92vw,360px) !important;margin:0 auto 6px}
+    .a1 .body{order:-1}
+    .a1{display:flex;flex-direction:column;align-items:center}
+    .a2 .sleeve,.a2 .box{max-width:min(84vw,320px) !important}
+    .a1 .case,.a1 .casebox{max-width:min(90vw,360px) !important}
+    .a1 .props{max-width:min(92vw,360px) !important}
+    .a1 .disc{max-width:84px !important;margin:0 auto 18px !important}
+    .a1 .case,.a2 .sleeve,.a2 .box{width:100% !important;margin:14px auto}
+    .panel{grid-template-columns:1fr;gap:20px}
+    .a3{padding:8vh var(--mar) 10vh}
+    .a3 h2{font-size:clamp(26px,8vw,34px)}
+    footer{padding-bottom:calc(40px + 84px)}
+    footer .mark{width:120px}
+    .dock p{display:block;font-size:10px;line-height:1.3;max-width:62%}
+  }
+  :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+
+  /* ---------- flat product pair (sleeve in front, vinyl peeking right) ---------- */
+  .view{position:relative;width:100%;aspect-ratio:1.42/1;perspective:none;display:block}
+  .view .peek{position:absolute;right:0;top:6%;width:56%;aspect-ratio:1;border-radius:50%;z-index:1;
+    background:#100D0B;box-shadow:0 18px 34px rgba(70,45,15,.28);display:grid;place-items:center;
+    overflow:hidden}
+  .view .peek .label{width:37%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+  .view .peek .label img{width:100%;height:100%;object-fit:cover;display:block}
+  .view .peek::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.13),transparent 46%);pointer-events:none}
+  .view .sleeve{position:absolute;left:0;top:2%;width:64%;aspect-ratio:1;z-index:2;overflow:hidden;
+    background:#E9DCC2;box-shadow:0 22px 40px rgba(70,45,15,.30),inset 0 0 0 1px rgba(0,0,0,.06);
+    border-radius:2px;transform:none !important;transform-style:flat !important}
+  .view .sleeve img{width:100%;height:100%;object-fit:cover;display:block}
+  .view .pv-title{position:absolute;left:8%;right:8%;top:7%;font-family:var(--serif);font-style:italic;
+    font-size:clamp(12px,1.3vw,18px);line-height:1.02;color:#fff;mix-blend-mode:difference}
+  .view .pv-artist{position:absolute;left:8%;bottom:6%;font-family:var(--sans);font-size:9px;
+    letter-spacing:.16em;text-transform:uppercase;color:#fff;mix-blend-mode:difference}
+
+  /* ===== mobile: dedicated static hero (appended last, wins) ===== */
+  @media (max-width:900px){
+    body{overflow-x:hidden}
+    .stage{width:100%}
+    .a1{display:flex;flex-direction:column;align-items:center;height:auto !important;
+      padding:78px 16px 34px !important;gap:0}
+    .a1>*{position:static !important;left:auto !important;right:auto !important;
+      top:auto !important;bottom:auto !important;translate:none !important;transform:none !important}
+    .a1 .t3d{width:94% !important;max-width:100% !important;order:1;margin:0 0 10px !important}
+    .a1 .body{width:94% !important;max-width:100% !important;order:2;margin:0 0 10px !important;
+      font-size:15.5px !important;line-height:1.6 !important}
+    .a1 .pill{order:4;margin:0 0 6px !important;align-self:flex-start}
+    .a1 .hw{order:5;margin:0 0 18px !important;align-self:flex-start;font-size:14px !important}
+    .a1 .disc{order:6;width:72px !important;max-width:72px !important;margin:0 0 18px !important}
+    .a1 .case{order:7;width:94% !important;max-width:100% !important;margin:0 0 14px !important}
+    .a1 .casebox{order:8;width:78% !important;max-width:100% !important;margin:0 0 14px !important}
+    .a1 .props{order:9;width:96% !important;max-width:100% !important;margin:0 !important}
+
+    .a2{height:auto !important;padding:26px 16px 96px !important;display:flex;flex-direction:column;align-items:center}
+    .a2>*{position:static !important;left:auto !important;right:auto !important;top:auto !important;
+      bottom:auto !important;translate:none !important}
+    .a2 h2{width:94% !important;max-width:100% !important;font-size:clamp(26px,7.4vw,34px) !important;
+      margin:0 0 10px !important;order:1}
+    .a2 .notes{width:94% !important;max-width:100% !important;order:2;margin:0 0 16px !important}
+    .a2 .sleeve{width:80% !important;max-width:100% !important;order:3;margin:0 0 12px !important}
+    .a2 .box{width:74% !important;max-width:100% !important;order:4;margin:0 0 8px !important}
+    .a2 .cap--r{order:5;width:94% !important;max-width:100% !important;margin:0 !important;transform:none !important}
+
+    .a25{height:auto !important;min-height:0 !important;padding:20px 16px 30px !important;display:flex;flex-direction:column;align-items:center}
+    .a25 .corner{position:static !important;width:100% !important;max-width:340px;margin:0 auto 16px}
+    .a25 .line{position:static !important;max-width:100% !important;text-align:center;margin:0 !important}
+    .a3{padding:40px 16px 48px !important;min-height:0 !important}
+    .a3 .head{margin-bottom:18px}
+    .a3 h2{font-size:clamp(26px,7.6vw,34px) !important}
+    .a3 .sub{font-size:14.5px !important}
+    .panel{grid-template-columns:1fr !important;gap:18px !important;padding:16px !important;
+      border-radius:20px !important}
+    .view{width:100% !important;max-width:100% !important}
+    footer{padding:28px 16px calc(28px + 104px) !important;gap:12px 20px !important}
+    footer .mark{width:112px !important}
+    .dock{bottom:10px}
+    .dock .bar{min-height:46px;padding:6px 10px 6px 14px}
+    .dock p{display:block;font-size:10px;line-height:1.3;max-width:62%}
+  }
+
+  @media (max-width:900px){
+    html,body{width:100% !important;max-width:100vw !important;overflow-x:hidden !important}
+    body *{max-width:100vw}
+    .stage,.a1,.a2,.a3,footer,.panel,.view{width:100% !important;max-width:100vw !important}
+    img,svg{max-width:100% !important;height:auto !important}
+    .a1 .t3d img,.a1 .case img,.a1 .casebox img,.a1 .props img{width:100% !important}
+    .a1 .pill{display:inline-block !important;width:auto !important}
+    .a1 .hw{width:auto !important}
+  }
+
+  /* tablet tuning: keep the stack but cap the hero art */
+  @media (min-width:600px) and (max-width:900px){
+    .a1{padding-top:104px !important}
+    .a1 .t3d{width:auto !important;max-width:min(88%,520px) !important;margin:0 auto 14px !important}
+    .a1 .body{width:auto !important;max-width:58ch !important;font-size:17px !important;line-height:1.65 !important;
+      margin:0 auto 12px !important;padding:0 4px}
+    .a1 .pill,.a1 .hw{align-self:center !important;margin-left:0 !important}
+    .a1 .case{width:auto !important;max-width:min(88%,500px) !important}
+    .a1 .casebox{width:auto !important;max-width:min(62%,360px) !important}
+    .a1 .props{width:auto !important;max-width:min(92%,560px) !important}
+    .a2 h2{max-width:min(88%,560px) !important;margin:0 auto 12px !important;text-align:center}
+    .a2 .notes{max-width:56ch !important;margin:0 auto 18px !important}
+    .a2 .sleeve{max-width:min(66%,380px) !important}
+    .a2 .box{max-width:min(56%,320px) !important}
+    .a2 .cap--r{text-align:center !important}
+    .a3 h2{font-size:clamp(30px,4.4vw,40px) !important}
+    .panel{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr) !important;max-width:780px;margin:0 auto;gap:22px}
+  }
+
+  /* interactions */
+  .a2 .note{transition:color .25s,border-color .25s,transform .25s}
+  .a2 .note:hover{color:var(--ink);transform:translateX(4px)}
+  .a2 .note:hover .num{color:var(--acc)}
+  .a2 .note:hover + .note{border-color:rgba(232,169,76,.28)}
+  .dock .bar:hover{border-color:rgba(232,169,76,.45)}
+  .a25 .line:hover{color:var(--ink)}
+  .macro{cursor:default}
+  .btn:active{transform:translateY(1px)}
+
+
+
+  /* ===== mobile hero: purpose-built composition (390 x 620 canvas) ===== */
+  @media (max-width:900px){
+    .a1{aspect-ratio:390/768 !important;height:auto !important;margin-top:76px;
+      padding:0 !important;position:relative !important;overflow:visible}
+    .a1>*{position:absolute !important;translate:none !important;margin:0 !important}
+    .a1 .kicker{display:none !important}
+    .a1 .t3d{left:4% !important;top:2% !important;width:84% !important;max-width:none !important;
+      transform:rotate(-2deg);z-index:5}
+    .a1 .case{right:-22% !important;left:auto !important;top:50% !important;bottom:auto !important;
+      width:96% !important;max-width:none !important;z-index:4}
+    .a1 .casebox{display:none !important}
+    .a1 .props{left:-10% !important;top:auto !important;bottom:-12% !important;
+      width:46% !important;max-width:none !important;z-index:6}
+    .a1 .body{left:6% !important;top:29% !important;width:52% !important;max-width:none !important;
+      font-size:12.5px !important;line-height:1.5 !important;z-index:7}
+    .a1 .pill{left:6% !important;top:38% !important;font-size:11px !important;padding:6px 11px !important;z-index:7}
+    .a1 .hw{left:6% !important;top:43% !important;font-size:11.5px !important;z-index:7}
+  }
+
+  /* ===== mobile hero: one generated portrait scene + three text blocks ===== */
+  @media (max-width:900px){
+    .a1{aspect-ratio:390/742 !important;height:auto !important;margin-top:0 !important;padding:0 !important;
+      background:url(assets/obj/mobile-hero.webp) top center/100% auto no-repeat #17120C;position:relative !important}
+    .a1>.t3d,.a1>.case,.a1>.casebox,.a1>.props,.a1>.kicker{display:none !important}
+    .a1 .body{position:absolute !important;left:7% !important;right:7% !important;top:34.5% !important;
+      width:auto !important;max-width:none !important;font-size:12.5px !important;line-height:1.5 !important;
+      color:rgba(246,238,220,.8) !important;z-index:6}
+    .a1 .pill{position:absolute !important;left:7% !important;top:43% !important;
+      font-size:11px !important;padding:6px 12px !important;z-index:6}
+    .a1 .hw{position:absolute !important;left:7% !important;top:47% !important;
+      font-size:11.5px !important;z-index:6}
+  }
+
+  /* ===== mobile: section 2 / 2b / 3 as vertical compositions ===== */
+  @media (max-width:900px){
+    /* --- 2: the record fills the frame, notes sit under it --- */
+    .a2{height:auto !important;padding:0 0 90px !important;position:relative !important;
+      display:flex;flex-direction:column}
+    .a2>*{position:static !important;translate:none !important;margin:0 !important}
+    .a2 h2{order:1;padding:76px 7% 10px;font-size:clamp(26px,7.4vw,34px) !important;text-align:left}
+    .a2 .macro{order:2;position:relative !important;width:118% !important;margin-left:-9% !important;
+      height:auto !important;top:auto !important;right:auto !important;bottom:auto !important;
+      filter:drop-shadow(0 40px 60px rgba(0,0,0,.75))}
+    .a2 .macro .macro-img{width:100%}
+    .a2 .notes{order:3;padding:6px 7% 0;width:auto !important;display:grid;gap:12px;
+      border-top:1px solid rgba(246,238,220,.12);margin-top:6px}
+    .a2 .note{font-size:13.5px !important;grid-template-columns:22px 1fr;gap:8px}
+    .a2 .note .num{font-size:12px !important}
+
+    /* --- 2b: brass macro bleeds off the left, copy under it --- */
+    .a25{height:auto !important;padding:0 0 80px !important;display:flex;flex-direction:column}
+    .a25>*{position:static !important}
+    .a25 .corner{order:1;width:126% !important;margin-left:-13% !important;
+      filter:drop-shadow(0 40px 60px rgba(0,0,0,.7))}
+    .a25 .line{order:2;padding:14px 7% 0;font-size:14.5px !important;max-width:none !important}
+
+    /* --- 3: form first, preview second, both full width --- */
+    .a3{padding:36px 6% 90px !important;min-height:0 !important;display:block !important}
+    .a3 .head{margin-bottom:18px !important;text-align:left !important}
+    .a3 h2{font-size:clamp(24px,7vw,32px) !important}
+    .a3 .sub{font-size:14px !important;max-width:none !important}
+    .panel{grid-template-columns:1fr !important;gap:14px !important;padding:16px !important;
+      border-radius:20px !important}
+    .panel .view{order:1}
+    .panel>div:first-child{order:2}
+    .view{aspect-ratio:1.28/1 !important}
+  }
+</style>
+</head>
+<body>
+<div class="room"></div><div class="grain"></div>
+
+<header>
+  <a href="#a1" aria-label="SparkleWares Studio"><img class="logo" src="assets/img/logo-purple.png" alt="SparkleWares Studio"></a>
+  <a class="menu" href="#a3" aria-label="Make one"><i></i><i></i><i></i></a>
+</header>
+
+<div class="stage">
+
+  <!-- ============ 1 · the table ============ -->
+  <section class="a1" id="a1">
+    <h1 class="sr">Five centimetres of vinyl</h1>
+    <div class="o case"><img src="assets/obj/case2.webp" alt="Mini suitcase record player, lid open."><span class="vinyl" aria-hidden="true"><span class="spin"><img src="assets/obj/macro-disc.webp" alt=""></span></span></div>
+    <div class="o casebox"><img src="assets/obj/casebox.webp" alt="Clear acrylic case holding mini sleeves."></div>
+    <div class="o props"><img src="assets/obj/props.webp" alt="Dried flowers, a candle, books and a brass pen on the desk."></div>
+    <div class="t3d"><img src="assets/obj/title.webp" alt="Five centimetres of vinyl."></div>
+    <p class="kicker">Custom fan merch for brighter moments</p>
+    <p class="body">Every album redrawn for a 2-inch sleeve — cut, pressed and glued by hand. A miniature of the record that raised you.</p>
+    <span class="pill">5 cm · 2 in</span>
+    <div class="hw hand">made to order, one at a time</div>
+  </section>
+
+  <!-- ============ 2 · what is on the table ============ -->
+  <section class="a2" id="a2">
+    <h2>It opens<br>like a room.</h2>
+    <div class="notes">
+      <p class="note"><span class="num">01</span><span><b>the record</b> — hand-cut, 5 cm, pressed one at a time</span></p>
+      <p class="note"><span class="num">02</span><span><b>the sleeve</b> — redrawn both sides, glued by hand</span></p>
+      <p class="note"><span class="num">03</span><span><b>the case</b> — brass corners, cream felt lining</span></p>
+    </div>
+    <div class="macro">
+      <img class="macro-img" src="assets/obj/macro-disc.webp" alt="Close-up of the 2-inch vinyl.">
+      <span class="macro-label"><img src="assets/img/logo-badge.webp" alt="SparkleWares Studio badge"></span>
+    </div>
+    <div class="o sleeve" style="display:none"><img src="assets/obj/sleeve.webp" alt="A 2-inch sleeve with its record leaning against it."></div>
+    <div class="o box" style="display:none"><img src="assets/obj/box.webp" alt="An open cream gift box with the record inside."></div>
+  </section>
+
+  <!-- ============ 2b · the material ============ -->
+  <section class="a25" id="a25">
+    <div class="corner"><img src="assets/obj/macro-corner.webp" alt="Brass corner and mint enamel of the case."></div>
+    <p class="line">Brass corners, cream felt, a case that opens like a room — the parts you only notice in the hand.</p>
+  </section>
+
+  <!-- ============ 3 · upload ============ -->
+  <section class="a3" id="a3">
+    <div class="head">
+      <h2>Yours, in miniature.</h2>
+      <p class="sub">Two images, one record: the sleeve on the outside, the label in the middle. Drop them in and see it before it is made.</p>
+    </div>
+    <div class="panel">
+      <div>
+        <h3>Sleeve &amp; label</h3>
+        <label class="up" id="dropA">
+          <strong>Cover image</strong>
+          <small>the 2-inch sleeve · JPG / PNG</small>
+          <input type="file" id="fileA" accept="image/*" aria-label="Sleeve cover image">
+        </label>
+        <label class="up" id="dropB">
+          <strong>Label image</strong>
+          <small>the centre of the record · JPG / PNG</small>
+          <input type="file" id="fileB" accept="image/*" aria-label="Record label image">
+        </label>
+        <div class="f"><label for="t">Title</label><input id="t" type="text" maxlength="20" value="Golden Hours" aria-label="Record title"></div>
+        <div class="f"><label for="a">Artist</label><input id="a" type="text" maxlength="16" value="Your name" aria-label="Artist name"></div>
+        <div class="acts">
+          <button class="btn" id="save">Save preview</button>
+          <a class="btn btn--ghost" id="send" href="mailto:hello@sparklewares.studio">Send to the studio</a>
+        </div>
+        <p class="micro">Nothing prints until you approve a proof.</p>
+      </div>
+
+      <div class="view">
+        <div class="peek">
+          <span class="label"><img id="artB" src="assets/img/cover-city.jpg" alt="Label artwork"></span>
+        </div>
+        <div class="sleeve">
+          <img id="artA" src="assets/img/cover-sea.jpg" alt="Sleeve artwork">
+          <span class="pv-title" id="pvTitle">Golden Hours</span>
+          <span class="pv-artist" id="pvArtist">Your name</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="mark"><img src="assets/img/logo-purple.png" alt="SparkleWares Studio"></div>
+    <div>
+      <p style="margin:0 0 4px">Handmade 2-inch mini vinyl records and matching sleeves.</p>
+      <p style="margin:0">hello@sparklewares.studio · Etsy opening soon</p>
+    </div>
+    <p style="margin:0;font-size:10px;letter-spacing:.12em;text-transform:uppercase">© 2026 SparkleWares Studio</p>
+  </footer>
+</div>
+
+<div class="dock"><div class="bar">
+  <p>Hand-cut 2-inch vinyl · hand-glued sleeve · numbered one of one</p>
+  <span class="sp"><a class="btn" href="#a3">Make one</a></span>
+</div></div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var artA=$('#artA'), artB=$('#artB'), t=$('#t'), a=$('#a');
+  var pvTitle=$('#pvTitle'), pvArtist=$('#pvArtist'), send=$('#send');
+  var dataA=null, dataB=null;
+
+  function sync(){
+    var ti=(t.value||'').trim()||'Untitled', ar=(a.value||'').trim()||'You';
+    pvTitle.textContent=ti; pvArtist.textContent=ar;
+    send.href='mailto:hello@sparklewares.studio?subject='+encodeURIComponent('Mini vinyl — "'+ti+'"')
+      +'&body='+encodeURIComponent('Hi SparkleWares,\n\nI would like a 2-inch mini vinyl.\n\nTitle: '+ti+'\nArtist: '+ar);
+  }
+  t.addEventListener('input',sync); a.addEventListener('input',sync); sync();
+
+  function square(src){return new Promise(function(res){
+    var im=new Image();
+    im.onload=function(){
+      var s=Math.min(im.width,im.height),c=document.createElement('canvas');
+      c.width=c.height=900;
+      c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,900,900);
+      res(c.toDataURL('image/jpeg',.9));
+    };
+    im.onerror=function(){res(null)}; im.src=src;
+  });}
+
+  function wire(inputSel,dropSel,apply){
+    var input=$(inputSel), drop=$(dropSel);
+    input.addEventListener('change',function(){handle(input.files[0])});
+    ['dragenter','dragover'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('over')})});
+    ['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('over')})});
+    drop.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files[0])handle(e.dataTransfer.files[0])});
+    function handle(f){
+      if(!f) return;
+      if(!/^image\//.test(f.type)){alert('Please choose an image file.');return;}
+      var r=new FileReader();
+      r.onload=function(){ square(r.result).then(function(u){
+        if(!u){alert('That image could not be read.');return;}
+        apply(u);
+      });};
+      r.readAsDataURL(f);
+    }
+  }
+  wire('#fileA','#dropA',function(u){ dataA=u; artA.src=u; });
+  wire('#fileB','#dropB',function(u){
+    dataB=u; artB.setAttribute('href',u);
+    artB.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href',u);
+  });
+
+  function rr(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);
+    g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+
+  $('#save').addEventListener('click',function(){
+    var W=2000,H=1400,c=document.createElement('canvas');c.width=W;c.height=H;
+    var g=c.getContext('2d');g.fillStyle='#F6EEDC';g.fillRect(0,0,W,H);
+    var sleeve=new Image(), label=new Image(), left=0;
+    function done(){
+      if(--left>0) return;
+      /* vinyl first (it sits behind the sleeve in the flat layout) */
+      g.save();g.translate(1430,700);
+      g.shadowColor='rgba(60,40,20,.28)';g.shadowBlur=50;g.shadowOffsetY=26;
+      g.beginPath();g.arc(0,0,300,0,Math.PI*2);g.fillStyle='#100D0B';g.fill();
+      g.shadowColor='transparent';
+      g.strokeStyle='rgba(255,255,255,.06)';g.lineWidth=2;
+      [292,272,252,232,212,192,172].forEach(function(r){g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.stroke()});
+      g.strokeStyle='rgba(0,0,0,.45)';
+      [280,255,230,205].forEach(function(r){g.beginPath();g.arc(0,0,r,0,Math.PI*2);g.stroke()});
+      /* label */
+      g.beginPath();g.arc(0,0,112,0,Math.PI*2);g.fillStyle='#F3E7CE';g.fill();
+      g.save();g.beginPath();g.arc(0,0,112,0,Math.PI*2);g.clip();
+      g.drawImage(label,0,0,label.width,label.height,-112,-112,224,224);g.restore();
+      g.beginPath();g.arc(0,0,11,0,Math.PI*2);g.fillStyle='#1A1512';g.fill();
+      g.restore();
+
+      /* sleeve in front */
+      g.save();g.translate(560,700);g.rotate(-4*Math.PI/180);
+      g.shadowColor='rgba(70,45,15,.3)';g.shadowBlur=56;g.shadowOffsetY=28;
+      g.fillStyle='#E9DCC2';rr(g,-370,-370,740,740,4);g.fill();g.shadowColor='transparent';
+      g.save();rr(g,-370,-370,740,740,4);g.clip();
+      g.drawImage(sleeve,0,0,sleeve.width,sleeve.height,-370,-370,740,740);g.restore();
+      g.restore();
+
+      /* type */
+      g.fillStyle='#20180F';g.font='italic 46px "Bodoni MT", Georgia, serif';
+      g.fillText((t.value||'Untitled').slice(0,20),260,1260);
+      g.font='22px "Segoe UI", Arial, sans-serif';g.fillStyle='rgba(32,24,15,.55)';
+      g.fillText(((a.value||'')+'').toUpperCase()+'  ·  5 CM  ·  2 IN',260,1310);
+      g.textAlign='right';g.font='600 24px "Segoe UI", Arial, sans-serif';g.fillStyle='#C07E22';
+      g.fillText('SparkleWares Studio',W-160,1310);
+      g.textAlign='left';g.font='600 14px "Segoe UI", Arial, sans-serif';g.fillStyle='rgba(32,24,15,.35)';
+      g.fillText('HANDMADE IN SMALL BATCHES  ·  SPARKLEWARES STUDIO',260,1360);
+      var l=document.createElement('a');
+      l.download='sparklewares-'+(t.value||'preview').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';
+      l.href=c.toDataURL('image/png');l.click();
+    }
+    sleeve.onload=function(){if(++left===2)done()};
+    label.onload=function(){if(++left===2)done()};
+    sleeve.src=dataA||artA.src;
+    label.src=dataB||'assets/img/cover-city.jpg';
+    left=0;
+    setTimeout(function(){ if(left<2){ done(); } },1200);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  if (window.matchMedia('(max-width:900px)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var layers=[[document.querySelector('.a1 .case'),-.10],
+              [document.querySelector('.a1 .casebox'),-.055],
+              [document.querySelector('.a1 .props'),-.14],
+              [document.querySelector('.a1 .disc'),-.20],
+              [document.querySelector('.a2 .sleeve'),-.07],
+              [document.querySelector('.a2 .box'),-.045]];
+  layers=layers.filter(function(l){return l[0]});
+  var ticking=false;
+  function frame(){
+    ticking=false;
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    for(var i=0;i<layers.length;i++){
+      var el=layers[i][0], f=layers[i][1];
+      var ty=Math.max(-70,Math.min(70,y*0.12*f));
+      el.style.setProperty('--ty',ty.toFixed(1)+'px');
+    }
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(frame);}
+  },{passive:true});
+  frame();
+})();
+</script>
+
+<script>
+(function(){
+  var img=document.querySelector('.a2 .macro .macro-img');
+  if(!img) return;
+  var paused=false, angle=0, last=0;
+  img.addEventListener('mouseenter',function(){paused=true});
+  img.addEventListener('mouseleave',function(){paused=false});
+  function loop(t){
+    if(!last) last=t;
+    var dt=t-last; last=t;
+    if(!paused){ angle=(angle+dt*(360/11000))%360; img.style.transform='rotate('+angle.toFixed(2)+'deg)'; }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>
