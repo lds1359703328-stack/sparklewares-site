@@ -27,3 +27,7 @@ Live: https://sparklewares.pages.dev
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
+
+## Auto-deploy
+
+Connected to Cloudflare Pages — pushing to `main` rebuilds the site.
