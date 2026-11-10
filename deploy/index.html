@@ -344,7 +344,7 @@
 
   /* ===== mobile hero: one generated portrait scene + three text blocks ===== */
   @media (max-width:900px){
-    .a1{aspect-ratio:1080/1925 !important;height:auto !important;margin-top:0 !important;padding:0 !important;
+    .a1{aspect-ratio:1080/1540 !important;height:auto !important;margin-top:0 !important;padding:0 !important;
       background:url(assets/obj/mobile-hero.webp) center/100% 100% no-repeat #17120C;position:relative !important}
     .a1>.t3d,.a1>.case,.a1>.casebox,.a1>.props,.a1>.kicker{display:none !important}
     .a1 .body{position:absolute !important;left:7% !important;right:7% !important;top:36% !important;
@@ -394,9 +394,9 @@
 
   /* final mobile hero text positions (appended last => always wins) */
   @media (max-width:900px){
-    .a1 .body{top:41% !important}
-    .a1 .pill{top:48% !important}
-    .a1 .hw{top:52% !important}
+    .a1 .body{top:51.2% !important}
+    .a1 .pill{top:60.0% !important}
+    .a1 .hw{top:65.0% !important}
   }
 
   /* mobile hero: blend the picture's dark bottom into the page colour */
@@ -405,6 +405,16 @@
       background:linear-gradient(to bottom, rgba(23,18,12,0) 0%, rgba(23,18,12,.45) 48%, #17120C 92%);
       pointer-events:none;z-index:5}
     .a2{padding-top:8px !important}
+  }
+
+  /* mobile: unify the whole page with the hero's olive palette */
+  @media (max-width:900px){
+    body{background:#1E1B03}
+    .room{background:
+      radial-gradient(72% 46% at 72% 6%, rgba(150,120,40,.30), rgba(150,120,40,.06) 46%, transparent 70%),
+      radial-gradient(130% 100% at 50% 0%, #23200A 0%, #1E1B03 58%, #12100A 100%)}
+    .dock .bar{background:rgba(26,23,5,.86);border-color:rgba(246,238,220,.14)}
+    .a1::after{background:linear-gradient(to bottom, rgba(30,27,3,0) 0%, rgba(30,27,3,.5) 50%, #1E1B03 94%)}
   }
 </style>
 </head>
